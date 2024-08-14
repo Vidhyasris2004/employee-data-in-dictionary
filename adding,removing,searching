@@ -1,0 +1,74 @@
+class EmployeeDatabase:
+    def __init__(self):
+        self.employees = {}
+
+    def add_employee(self, name, age, department, salary):
+        self.employees[name] = {
+            'age': age,
+            'department': department,
+            'salary': salary
+        }
+        print(f"Employee {name} added successfully.")
+
+    def remove_employee(self, name):
+        if name in self.employees:
+            del self.employees[name]
+            print(f"Employee {name} removed successfully.")
+        else:
+            print(f"Employee {name} not found.")
+
+    def search_employee(self, name):
+        if name in self.employees:
+            print(f"Employee {name} found:")
+            print(f"Age: {self.employees[name]['age']}")
+            print(f"Department: {self.employees[name]['department']}")
+            print(f"Salary: {self.employees[name]['salary']}")
+        else:
+            print(f"Employee {name} not found.")
+
+    def display_all_employees(self):
+        if self.employees:
+            for name, details in self.employees.items():
+                print(f"Employee: {name}")
+                print(f"Age: {details['age']}")
+                print(f"Department: {details['department']}")
+                print(f"Salary: {details['salary']}")
+                print("------------------------")
+        else:
+            print("No employees in the database.")
+
+
+def main():
+    database = EmployeeDatabase()
+
+    while True:
+        print("\n1. Add Employee")
+        print("2. Remove Employee")
+        print("3. Search Employee")
+        print("4. Display All Employees")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            name = input("Enter employee name: ")
+            age = int(input("Enter employee age: "))
+            department = input("Enter employee department: ")
+            salary = float(input("Enter employee salary: "))
+            database.add_employee(name, age, department, salary)
+        elif choice == "2":
+            name = input("Enter employee name: ")
+            database.remove_employee(name)
+        elif choice == "3":
+            name = input("Enter employee name: ")
+            database.search_employee(name)
+        elif choice == "4":
+            database.display_all_employees()
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
